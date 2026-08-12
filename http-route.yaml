@@ -4,21 +4,15 @@ metadata:
   name: app1
   namespace: roboshop
 spec:
-  hostnames:
-  - app1.daws90s.shop
   parentRefs:
-  - group: gateway.networking.k8s.io
-    kind: Gateway
-    name: roboshop
-    sectionName: http
+    - name: roboshop
+      sectionName: http
+
   rules:
-  - backendRefs:
-    - group: ""
-      kind: Service
-      name: app1
-      port: 80
-      weight: 1
-    matches:
-    - path:
-        type: PathPrefix
-        value: /
+    - matches:
+        - path:
+            type: PathPrefix
+            value: /0
+      backendRefs:
+        - name: app1
+          port: 80
